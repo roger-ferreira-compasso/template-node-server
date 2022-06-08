@@ -15,6 +15,15 @@ steps:
     versionSpec: '12.x'
   displayName: 'Install Node.js'
 
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '17.09.0-ce'
+
 - script: |
     npm install
   displayName: 'npm install'
+
+- script: |
+    docker login -u "rogerferreiracompasso"
+  displayName: 'docker login'
+  

@@ -28,9 +28,9 @@ steps:
   displayName: 'docker login'
   
 - script: |
-    docker build -t rogerferreiracompasso/$(Build.Repository.Name):latest .
+    docker build -t rogerferreiracompasso/testeyamaha:latest .
   displayName: 'docker build'
 
 - script: |
-    docker push rogerferreiracompasso/$(Build.Repository.Name):latest
+    docker push rogerferreiracompasso/testeyamaha:latest
   displayName: 'docker push'

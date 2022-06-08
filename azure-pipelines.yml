@@ -28,7 +28,9 @@ steps:
   displayName: 'docker login'
   
 - script: |
-    pwd && ls
     docker build -t rogerferreiracompasso/$(Build.Repository.Name):latest .
   displayName: 'docker build'
-  
+
+- script: |
+    docker push rogerferreiracompasso/$(Build.Repository.Name):latest
+  displayName: 'docker push'

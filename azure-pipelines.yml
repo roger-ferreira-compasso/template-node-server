@@ -24,6 +24,6 @@ steps:
   displayName: 'npm install'
 
 - script: |
-    docker login -u "rogerferreiracompasso"
+    docker login -u "rogerferreiracompasso" -p $(dockerpassword)
   displayName: 'docker login'
   

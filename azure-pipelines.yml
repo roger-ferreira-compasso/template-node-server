@@ -9,13 +9,15 @@ trigger:
 variables:
   - group: library-teste-yamaha
   - name: username-docker
+    value: $[variables.username-docker]
   - name: password-docker
+    value: $[variables.password-docker]
 stages:
 - stage: Build
   displayName: "Build"
   jobs:
   - job: Build
-    displayName: "BACKEND"
+    displayName: "Build"
     
     pool:
       vmImage: 'ubuntu-latest'

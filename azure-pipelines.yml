@@ -30,11 +30,11 @@ stages:
       displayName: 'docker login'
   
     - script: |
-        docker build -t $(buildName):$(buildId) . 
+        docker build -t $(usernameDocker)/$(buildName):$(buildId) . 
       displayName: 'docker build'
 
     - script: |
-        docker push $(buildName):$(buildId)
+        docker push $(usernameDocker)/$(buildName):$(buildId)
       displayName: 'docker push'
   
 

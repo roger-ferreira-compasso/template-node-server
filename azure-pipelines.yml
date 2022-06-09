@@ -12,7 +12,7 @@ variables:
   - name: password-docker
 stages:
 - stage: Build
-  displayName: "Provisionamento dos recursos do backend (terraform)"
+  displayName: "Build"
   jobs:
   - job: Build
     displayName: "BACKEND"

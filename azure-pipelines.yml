@@ -8,7 +8,8 @@ trigger:
 
 variables:
   - group: library-teste-yamaha
-    
+  - name: buildId
+    value: $(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 stages:
 - stage: Build
   displayName: "Build"
@@ -21,15 +22,16 @@ stages:
 
     steps:
     - script: |
-        docker login -u $(username-docker) -p $(password-docker)
+        docker login -u $(usernameDocker) -p $(passwordDocker)
+        echo $(buildId)
       displayName: 'docker login'
   
     - script: |
-        docker build -t rogerferreiracompasso/$(Build.DefinitionName):v2 .
+        docker build -t $(usernameDocker)/$(Build.DefinitionName):v2 . 
       displayName: 'docker build'
 
     - script: |
-        docker push rogerferreiracompasso/$(Build.DefinitionName):v2
+        docker push $(usernameDocker)/$(Build.DefinitionName):v2
       displayName: 'docker push'
   
 

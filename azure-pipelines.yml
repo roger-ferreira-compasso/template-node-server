@@ -9,7 +9,9 @@ trigger:
 variables:
   - group: libraryTesteYamaha
   - name: buildId
-    value: $(Build.Repository.Name)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+    value: $(Date:yyyyMMdd)
+  - name: buildName
+    value: $(Build.Repository.Name)
 stages:
 - stage: Build
   displayName: "Build"
@@ -27,11 +29,11 @@ stages:
       displayName: 'docker login'
   
     - script: |
-        docker build -t $(usernameDocker)/$(Build.DefinitionName):v2 . 
+        docker build -t $(usernameDocker)/$(buildName):v2 . 
       displayName: 'docker build'
 
     - script: |
-        docker push $(usernameDocker)/$(Build.DefinitionName):v2
+        docker push $(usernameDocker)/$(buildName):v2
       displayName: 'docker push'
   
 

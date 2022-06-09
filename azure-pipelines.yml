@@ -11,7 +11,7 @@ variables:
   - name: buildId
     value: $(Build.BuildId)
   - name: buildName
-    value: $(Build.Repository.Name)
+    value: $(Build.DefinitionName)
 stages:
 - stage: Build
   displayName: "Build"

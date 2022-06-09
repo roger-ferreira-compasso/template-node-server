@@ -6,27 +6,31 @@
 trigger:
 - master
 
+variables:
+  - group: library-teste-yamaha
+  - name: username-docker
+  - name: password-docker
 stages:
 - stage: Build
   displayName: "Provisionamento dos recursos do backend (terraform)"
   jobs:
   - job: Build
     displayName: "BACKEND"
-
+    
     pool:
       vmImage: 'ubuntu-latest'
 
     steps:
     - script: |
-        docker login -u "rogerferreiracompasso" -p $(dockerpassword)
+        docker login -u $(username-docker) -p $(password-docker)
       displayName: 'docker login'
   
     - script: |
-        docker build -t rogerferreiracompasso/$(Build.DefinitionName):v1 .
+        docker build -t rogerferreiracompasso/$(Build.DefinitionName):v2 .
       displayName: 'docker build'
 
     - script: |
-        docker push rogerferreiracompasso/$(Build.DefinitionName):v1
+        docker push rogerferreiracompasso/$(Build.DefinitionName):v2
       displayName: 'docker push'
   
 

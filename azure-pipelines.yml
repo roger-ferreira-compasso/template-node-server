@@ -26,6 +26,7 @@ stages:
     - script: |
         docker login -u $(usernameDocker) -p $(passwordDocker)
         echo $(buildId)
+        echo $(buildName)
       displayName: 'docker login'
   
     - script: |

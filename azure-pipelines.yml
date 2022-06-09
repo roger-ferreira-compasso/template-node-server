@@ -9,7 +9,7 @@ trigger:
 variables:
   - group: libraryTesteYamaha
   - name: buildId
-    value: $(Date:yyyyMMdd)
+    value: $(Get-Date -Format yyyyMMddhhmmss)
   - name: buildName
     value: $(Build.Repository.Name)
 stages:

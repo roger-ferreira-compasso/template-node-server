@@ -27,4 +27,4 @@ stages:
       displayName: Login 
       inputs:
         command: login
-        containerRegistry: cspyamahaaks
+        containerRegistry: CSP DevOps Connection 2

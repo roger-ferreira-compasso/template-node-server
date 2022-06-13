@@ -22,9 +22,9 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
 
-    steps:
-    - task: Docker@2
-      displayName: Login 
-      inputs:
-        command: login
-        containerRegistry: CSP DevOps Connection 2
+    steps: 
+    - task: Docker@0 
+      displayName: 'Build an image' 
+      inputs: 
+        azureSubscription: 'CSP DevOps Connection 2' 
+        azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}'

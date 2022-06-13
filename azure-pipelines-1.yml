@@ -28,3 +28,11 @@ stages:
       inputs: 
         azureSubscription: 'CSP DevOps Connection 2' 
         azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}'
+
+    - task: Docker@0 
+      displayName: 'Push an image' 
+      inputs: 
+        azureSubscription: 'CSP DevOps Connection 2' 
+        azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}' 
+        action: 'Push an image' 
+        includeLatestTag: true

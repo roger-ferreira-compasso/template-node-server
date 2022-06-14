@@ -19,7 +19,7 @@ stages:
   jobs:
   - job: Build
     displayName: "Build"
-    
+     
     pool:
       vmImage: 'ubuntu-latest'
 
@@ -28,6 +28,7 @@ stages:
       displayName: 'Build an image' 
       inputs:
         imageName: 'teste-registry:latest' 
+
         azureSubscription: 'CSP DevOps Connection 2' 
         azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}'
         includeLatestTag: true
@@ -42,11 +43,19 @@ stages:
 
   - job: Deploy
     displayName: "Deploy"
-    
+    dependsOn: Build
     pool:
       vmImage: 'ubuntu-latest'
 
-    steps:     
+    steps: 
+    - task: Docker@0
+      displayName: 'Run a Docker command'
+      inputs:
+       azureSubscription: 'CSP DevOps Connection 2'
+       azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}'
+       action: 'Run a Docker command'
+       customCommand: 'docker image ls'
+
     - task: Kubernetes@1
       inputs:
         connectionType: 'Azure Resource Manager'

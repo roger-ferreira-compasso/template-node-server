@@ -12,6 +12,7 @@ variables:
     value: $(Build.BuildId)
   - name: buildName
     value: $(Build.DefinitionName)
+
 stages:
 - stage: Build
   displayName: "Build"
@@ -38,3 +39,25 @@ stages:
         azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}' 
         action: 'Push an image' 
         includeLatestTag: true
+
+  - job: Deploy
+    displayName: "Deploy"
+    
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:     
+    - task: Kubernetes@1
+      inputs:
+        connectionType: 'Azure Resource Manager'
+        azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
+        azureResourceGroup: 'RG_AKS_DEV'
+        kubernetesCluster: 'aksdevyamaha001'
+        command: 'apply'
+        useConfigurationFile: true
+        configuration: './backend.yml'
+        secretType: 'dockerRegistry'
+        containerRegistryType: 'Azure Container Registry'
+        azureSubscriptionEndpointForSecrets: 'CSP DevOps Connection 2'
+        azureContainerRegistry: 'cspyamahaaks.azurecr.io'
+        secretName: 'ACRSecret'

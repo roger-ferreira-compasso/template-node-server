@@ -62,7 +62,7 @@ stages:
         azureResourceGroup: 'RG_AKS_DEV'
         kubernetesCluster: 'aksdevyamaha001'
         command: 'get'
-        arguments: 'pods'
+        arguments: 'nodes'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'    
     - task: Kubernetes@1

@@ -40,14 +40,6 @@ stages:
         azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}' 
         action: 'Push an image' 
         includeLatestTag: true
-
-  - job: Deploy
-    displayName: "Deploy"
-    dependsOn: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-
-    steps: 
     - task: Docker@0
       displayName: 'Run a Docker command'
       inputs:
@@ -56,6 +48,13 @@ stages:
        action: 'Run a Docker command'
        customCommand: 'docker image ls'
 
+  - job: Deploy
+    displayName: "Deploy"
+    dependsOn: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps: 
     - task: Kubernetes@1
       inputs:
         connectionType: 'Azure Resource Manager'

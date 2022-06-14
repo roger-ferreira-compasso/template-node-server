@@ -64,7 +64,7 @@ stages:
           az account set --subscription 51b701ec-6e01-4f59-9a39-4da2f45bdfc9 
           az aks get-credentials --resource-group RG_AKS_DEV --name aksdevyamaha001
           ls -lha ~/.kube
-          kubectl -kubeconf ~/.kube/config get nodes
+          kubectl -kubeconfig ~/.kube/config get nodes
 
     # - task: Bash@3
       # inputs:

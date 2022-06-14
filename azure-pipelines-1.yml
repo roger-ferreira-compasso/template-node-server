@@ -58,7 +58,9 @@ stages:
     - task: Bash@3
       inputs:
         targetType: 'inline'
-        script: |
+        script: | 
+          az account set --subscription 51b701ec-6e01-4f59-9a39-4da2f45bdfc9
+          az aks get-credentials --resource-group RG_AKS_DEV --name aksdevyamaha001
           ls -lha ~/.kube
 
     # - task: Kubernetes@1

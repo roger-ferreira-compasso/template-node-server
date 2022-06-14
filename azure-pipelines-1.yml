@@ -63,18 +63,20 @@ stages:
         kubernetesCluster: 'aksdevyamaha001'
         command: 'get'
         arguments: 'nodes'
-        secretType: 'dockerRegistry'
-        containerRegistryType: 'Azure Container Registry'    
-    - task: Kubernetes@1
-      inputs:
-        connectionType: 'Azure Resource Manager'
-        azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
-        azureResourceGroup: 'RG_AKS_DEV'
-        kubernetesCluster: 'aksdevyamaha001'
-        command: 'apply'
-        arguments: '-f $(System.DefaultWorkingDirectory)/backend.yaml'
-        secretType: 'dockerRegistry'
-        containerRegistryType: 'Azure Container Registry'
-        azureSubscriptionEndpointForSecrets: 'CSP DevOps Connection 2'
-        azureContainerRegistry: 'cspyamahaaks.azurecr.io'
-        secretName: 'ACRSecret'
+  
+
+
+   
+    # - task: Kubernetes@1
+      # inputs:
+        # connectionType: 'Azure Resource Manager'
+        # azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
+        # azureResourceGroup: 'RG_AKS_DEV'
+        # kubernetesCluster: 'aksdevyamaha001'
+        # command: 'apply'
+        # arguments: '-f $(System.DefaultWorkingDirectory)/backend.yaml'
+        # secretType: 'dockerRegistry'
+        # containerRegistryType: 'Azure Container Registry'
+        # azureSubscriptionEndpointForSecrets: 'CSP DevOps Connection 2'
+        # azureContainerRegistry: 'cspyamahaaks.azurecr.io'
+        # secretName: 'ACRSecret'

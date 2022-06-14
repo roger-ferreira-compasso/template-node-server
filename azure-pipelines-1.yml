@@ -54,8 +54,7 @@ stages:
         azureResourceGroup: 'RG_AKS_DEV'
         kubernetesCluster: 'aksdevyamaha001'
         command: 'apply'
-        useConfigurationFile: true
-        configuration: './backend.yml'
+        arguments: '-f $(System.DefaultWorkingDirectory)backend.yaml'
         secretType: 'dockerRegistry'
         containerRegistryType: 'Azure Container Registry'
         azureSubscriptionEndpointForSecrets: 'CSP DevOps Connection 2'

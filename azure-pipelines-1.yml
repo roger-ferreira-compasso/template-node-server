@@ -54,7 +54,7 @@ stages:
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
-          az login --service-principal -u "7b22a9b1-2f42-4595-8f63-2c31c4aa73e1" -p "627fbb56-c855-433c-ae3c-756f19ffbed6" --tenant "a0c5a886-5f53-4d9e-a2a1-7b2f208c912d"
+          az login -u "azsrvdev@yamahamotorbr.onmicrosoft.com" -p "YmHD2022@" --tenant "a0c5a886-5f53-4d9e-a2a1-7b2f208c912d"
           az account set --subscription 51b701ec-6e01-4f59-9a39-4da2f45bdfc9 
           az aks get-credentials --resource-group RG_AKS_DEV --name aksdevyamaha001
           ls -lha ~/.kube

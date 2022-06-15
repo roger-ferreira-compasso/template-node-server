@@ -5,15 +5,6 @@ pool:
  
 steps:
 
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'CSP DevOps Connection 2'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: |
-      az account set --subscription 51b701ec-6e01-4f59-9a39-4da2f45bdfc9 
-      az aks get-credentials --resource-group RG_AKS_DEV --name aksdevyamaha001
-      kubectl get nodes
 - task: Kubernetes@1
   inputs:
     connectionType: 'Azure Resource Manager'

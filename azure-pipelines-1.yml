@@ -8,4 +8,4 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
-    script: 'su agentdevops && kubectl get nodes'
+    script: 'whoami && cat ~/.kube/config && kubectl get nodes'

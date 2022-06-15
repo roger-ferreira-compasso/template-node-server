@@ -5,13 +5,20 @@ pool:
  
 steps:
 
-- task: Kubernetes@1
+- task: AzureCLI@2
   inputs:
-    connectionType: 'Azure Resource Manager'
-    azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
-    azureResourceGroup: 'RG_AKS_DEV'
-    kubernetesCluster: 'aksdevyamaha001'
-    command: 'get'
-    arguments: 'nodes'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
+    azureSubscription: 'CSP DevOps Connection 2'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      kubectl get nodes
+# - task: Kubernetes@1
+  # inputs:
+    # connectionType: 'Azure Resource Manager'
+    # azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
+    # azureResourceGroup: 'RG_AKS_DEV'
+    # kubernetesCluster: 'aksdevyamaha001'
+    # command: 'get'
+    # arguments: 'nodes'
+    # secretType: 'dockerRegistry'
+    # containerRegistryType: 'Azure Container Registry'

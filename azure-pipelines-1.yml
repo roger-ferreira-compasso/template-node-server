@@ -1,87 +1,16 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - master
-
-variables:
-  - group: libraryTesteYamaha
-  - name: buildId
-    value: $(Build.BuildId)
-  - name: buildName
-    value: $(Build.DefinitionName)
-
-stages:
-- stage: Build
-  displayName: "Build"
-  jobs:
-  - job: Build
-    displayName: "Build"
-     
-    pool:
-      vmImage: 'ubuntu-latest'
-
-    # steps: 
-    # - task: Docker@0 
-      # displayName: 'Build an image' 
-      # inputs:
-        # imageName: 'teste-registry:latest' 
-
-        # azureSubscription: 'CSP DevOps Connection 2' 
-        # azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}'
-        # includeLatestTag: true
-    # - task: Docker@0 
-      # displayName: 'Push an image' 
-      # inputs: 
-        # imageName: 'teste-registry:latest'
-        # azureSubscription: 'CSP DevOps Connection 2' 
-        # azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}' 
-        # action: 'Push an image' 
-        # includeLatestTag: true
-
-  - job: Deploy
-    displayName: "Deploy"
-    dependsOn: Build
-    pool:
-      vmImage: CSP_Agent
-      demands: "Execute kubernetes"
-
-    steps:
-    - task: Kubernetes@1
-      inputs:
-        connectionType: 'Azure Resource Manager'
-        azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
-        azureResourceGroup: 'RG_AKS_DEV'
-        kubernetesCluster: 'aksdevyamaha001'
-        command: 'get'
-        arguments: 'nodes'
-        secretType: 'dockerRegistry'
-        containerRegistryType: 'Azure Container Registry'
-    # - task: AzureCLI@2
-      # inputs:
-        # azureSubscription: 'CSP DevOps Connection 2'
-        # scriptType: 'bash'
-        # scriptLocation: 'inlineScript'
-        # inlineScript: |
-          # az login -u "azsrvdev@yamahamotorbr.onmicrosoft.com" -p "YmHD2022@" --tenant "a0c5a886-5f53-4d9e-a2a1-7b2f208c912d"
-          # az account set --subscription 51b701ec-6e01-4f59-9a39-4da2f45bdfc9 
-          # az aks get-credentials --resource-group RG_AKS_DEV --name aksdevyamaha001
-          # ls -lha ~/.kube
-          # cat ~/.kube/config
-          # kubectl get nodes
-      
-    - task: Kubernetes@1
-      inputs:
-        connectionType: 'Azure Resource Manager'
-        azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
-        azureResourceGroup: 'RG_AKS_DEV'
-        kubernetesCluster: 'aksdevyamaha001'
-        command: 'apply'
-        arguments: '-f $(System.DefaultWorkingDirectory)/backend.yaml'
-        secretType: 'dockerRegistry'
-        containerRegistryType: 'Azure Container Registry'
-        azureSubscriptionEndpointForSecrets: 'CSP DevOps Connection 2'
-        azureContainerRegistry: 'cspyamahaaks.azurecr.io'
-        secretName: 'ACRSecret'
+pool:
+  vmImage: CSP_Agent
+  demands: "Execute kubernetes"
+steps:
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: 'CSP DevOps Connection 2'
+    azureResourceGroup: 'RG_AKS_DEV'
+    kubernetesCluster: 'aksdevyamaha001'
+    command: 'get'
+    arguments: 'nodes'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'

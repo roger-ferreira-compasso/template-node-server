@@ -1,7 +1,7 @@
 trigger:
 - master
 pool:
-  vmImage: CSP_Agent
+  name: 'CSP_Agent'
   demands: "Execute kubernetes"
 steps:
 - task: Kubernetes@1

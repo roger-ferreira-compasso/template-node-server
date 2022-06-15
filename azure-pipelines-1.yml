@@ -2,7 +2,7 @@ trigger:
 - master
 pool:
   name: 'CSP_Agent'
-  demands: "Execute kubernetes"
+ 
 steps:
 - task: Kubernetes@1
   inputs:

@@ -42,4 +42,4 @@ stages:
     - task: Bash@3
       inputs:
         targetType: 'inline'
-        script: 'echo $AZP_TOKEN_FILE && ls'
+        script: 'sudo kubectl get secret regcred --output=yaml'

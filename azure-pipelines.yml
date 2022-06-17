@@ -33,7 +33,8 @@ stages:
 
   - job: Deploy
     displayName: "Deploy"
-      
+    dependsOn: Build
+    
     pool:
       name: 'agentTesteYamaha'
 
@@ -41,4 +42,4 @@ stages:
       - task: Bash@3
         inputs:
           targetType: 'inline'
-          script: 'kubectl get node'
+          script: 'kubetl apply -f backend.yml'

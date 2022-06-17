@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment-v1
+  name: testeyamaha-deployment-v1
 spec:
   replicas: 1
   template:  
     metadata:
-      name: backend
+      name: testeyamaha
       labels:
-        app: node-backend
+        app: node-testeyamaha
         version: blue
     spec:
       containers:
-        - name: node-container-backend
+        - name: node-container-testeyamaha
           image: testeyamaha.azurecr.io/teste-registry:latest
           imagePullPolicy: Always
           ports:
@@ -26,8 +26,8 @@ spec:
               cpu: "500m"
           envFrom:
           - configMapRef:
-              name: backend-configmap
+              name: testeyamaha-configmap
        
   selector:
     matchLabels:
-      app: node-backend
+      app: node-testeyamaha

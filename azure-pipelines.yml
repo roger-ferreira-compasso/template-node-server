@@ -5,15 +5,39 @@ pool:
   name: 'agentTesteYamaha'
 
 stages:
- - stage: Deploy
-   jobs:
-    - job: Deploy
-      displayName: "Deploy"
-      
-      pool:
-        name: 'agentTesteYamaha'
+- stage: Build
+  displayName: "Build"
+  jobs:
+  - job: Build
+    displayName: "Build"
 
-      steps:  
+    pool:
+      name: 'agentTesteYamaha'  
+
+    steps: 
+    - task: Docker@0 
+      displayName: 'Build an image' 
+      inputs:
+        imageName: 'teste-registry:latest' 
+        azureSubscription: 'testeYamaha' 
+        azureContainerRegistry: '{"loginServer":"testeyamaha.azurecr.io", "id" : "/subscriptions/e085391e-3c82-41ab-9e06-ba396884ac18/resourceGroups/TesteYamaha/providers/Microsoft.ContainerRegistry/registries/testeYamaha"}'
+        includeLatestTag: true
+    - task: Docker@0 
+      displayName: 'Push an image' 
+      inputs: 
+        imageName: 'teste-registry:latest'
+        azureSubscription: 'testeYamaha' 
+        azureContainerRegistry: '{"loginServer":"testeyamaha.azurecr.io", "id" : "/subscriptions/e085391e-3c82-41ab-9e06-ba396884ac18/resourceGroups/TesteYamaha/providers/Microsoft.ContainerRegistry/registries/testeYamaha"}'
+        action: 'Push an image' 
+        includeLatestTag: true
+
+  - job: Deploy
+    displayName: "Deploy"
+      
+    pool:
+      name: 'agentTesteYamaha'
+
+    steps:  
       - task: Bash@3
         inputs:
           targetType: 'inline'

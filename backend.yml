@@ -27,8 +27,7 @@ spec:
           envFrom:
           - configMapRef:
               name: backend-configmap
-      imagePullSecrets:
-            - name: digital-ocean
+       
   selector:
     matchLabels:
       app: node-backend

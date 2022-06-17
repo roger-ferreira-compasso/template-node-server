@@ -18,14 +18,14 @@ stages:
     - task: Docker@0 
       displayName: 'Build an image' 
       inputs:
-        imageName: 'teste-registry:latest' 
+        imageName: 'testeyamahanew:latest' 
         azureSubscription: 'testeYamaha' 
         azureContainerRegistry: '{"loginServer":"testeyamaha.azurecr.io", "id" : "/subscriptions/e085391e-3c82-41ab-9e06-ba396884ac18/resourceGroups/TesteYamaha/providers/Microsoft.ContainerRegistry/registries/testeYamaha"}'
         includeLatestTag: true
     - task: Docker@0 
       displayName: 'Push an image' 
       inputs: 
-        imageName: 'teste-registry:latest'
+        imageName: 'testeyamahanew:latest'
         azureSubscription: 'testeYamaha' 
         azureContainerRegistry: '{"loginServer":"testeyamaha.azurecr.io", "id" : "/subscriptions/e085391e-3c82-41ab-9e06-ba396884ac18/resourceGroups/TesteYamaha/providers/Microsoft.ContainerRegistry/registries/testeYamaha"}'
         action: 'Push an image' 

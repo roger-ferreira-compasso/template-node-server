@@ -7,12 +7,14 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: testeyamahaagent
+
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: roger-ferreira-compasso/teste-yamaha1
+      endpoint: github.com/roger-ferreira-compasso
 
 steps:
-
-
-- script: |
-    git clone https://github.com/roger-ferreira-compasso/teste-yamaha1.git 
-    ls -lha
-  displayName: 'git clone'
+  - template: pipeline.yml@templates

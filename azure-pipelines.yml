@@ -15,7 +15,7 @@ resources:
       name: roger-ferreira-compasso/teste-yamaha1
       endpoint: roger-ferreira-compasso
 stages:
-
+- stage: Build
 - template: pipeline.yml@templates
 
         

@@ -1,45 +1,18 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
 trigger:
 - master
 
-pool:
-  name: 'CSP_Agent'
+pool: CSP_Agent
 
-stages:
-- stage: Build
-  displayName: "Build"
-  jobs:
-  - job: Build
-    displayName: "Build"
-     
-    pool:
-      name: 'CSP_Agent'
-
-    steps: 
-    - task: Docker@0 
-      displayName: 'Build an image' 
-      inputs:
-        imageName: 'teste-registry:latest' 
-        azureSubscription: 'CSP DevOps Connection 2' 
-        azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}'
-        includeLatestTag: true
-    - task: Docker@0 
-      displayName: 'Push an image' 
-      inputs: 
-        imageName: 'teste-registry:latest'
-        azureSubscription: 'CSP DevOps Connection 2' 
-        azureContainerRegistry: '{"loginServer":"cspyamahaaks.azurecr.io", "id" : "/subscriptions/51b701ec-6e01-4f59-9a39-4da2f45bdfc9/resourceGroups/RG_AKS_DEV/providers/Microsoft.ContainerRegistry/registries/cspyamahaaks"}' 
-        action: 'Push an image' 
-        includeLatestTag: true
-
-  - job: Deploy
-    displayName: "Deploy"
-    dependsOn: Build
-
-    pool:
-      name: 'CSP_Agent'
-
-    steps:  
-    - task: Bash@3
-      inputs:
-        targetType: 'inline'
-        script: 'sudo kubectl get secret regcred --output=yaml'
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: Yamaha-Motor-da-Amazonia/gk-csp-templates-pipelines
+      endpoint: Yamaha-Motor-da-Amazonia
+steps:
+- template: template-node.yml@templates

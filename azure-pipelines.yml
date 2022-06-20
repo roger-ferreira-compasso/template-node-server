@@ -13,7 +13,7 @@ resources:
   repositories:
     - repository: templates
       type: github
-      name: roger-ferreira-compasso/teste-yamaha1
+      name: teste-yamaha1
       endpoint: github.com/roger-ferreira-compasso
 
 steps:

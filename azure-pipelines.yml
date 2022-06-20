@@ -15,11 +15,7 @@ resources:
       name: roger-ferreira-compasso/teste-yamaha1
       endpoint: roger-ferreira-compasso
 stages:
-- stage: Build
-  jobs:
-  - job:
-    pool: testeYamahaPoolAgent
-    steps:
-    - template: pipeline.yml@templates
+
+- template: pipeline.yml@templates
 
         

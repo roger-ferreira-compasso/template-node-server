@@ -12,8 +12,7 @@ stages:
 - stage: Build
   jobs:
   - job:
-    pool:
-      vmImage: testeyamahaagent
+    pool: testeyamahaagent
     steps:
     - script: |
         echo "ola"

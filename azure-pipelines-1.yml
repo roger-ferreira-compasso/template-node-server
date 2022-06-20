@@ -14,5 +14,5 @@ resources:
       type: github
       name: Yamaha-Motor-da-Amazonia/gk-csp-templates-pipelines
       endpoint: GitHub connection CSP
-steps:
+stages: 
 - template: template-node.yml@templates

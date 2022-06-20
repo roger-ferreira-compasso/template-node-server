@@ -6,8 +6,8 @@
 trigger:
 - master
 
-pool:
-  vmImage: testeyamahaagent
+pool: testeyamahaagent
+
 stages:
 - stage: Build
   jobs:

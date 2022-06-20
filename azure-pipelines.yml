@@ -14,7 +14,7 @@ resources:
     - repository: templates
       type: github
       name: roger-ferreira-compasso/teste-yamaha1
-      endpoint: github.com
+      endpoint: roger-ferreira-compasso
 
 steps:
   - template: pipeline.yml@templates

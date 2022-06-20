@@ -8,11 +8,18 @@ trigger:
 
 pool: testeYamahaPoolAgent
 
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: roger-ferreira-compasso/teste-yamaha1
+      endpoint: roger-ferreira-compasso
 stages:
 - stage: Build
   jobs:
   - job:
     pool: testeYamahaPoolAgent
     steps:
-    - script: |
-        echo "ola"
+    - template: pipeline.yml@templates
+
+        

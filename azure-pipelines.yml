@@ -6,13 +6,13 @@
 trigger:
 - master
 
-pool: testeyamahaagent
+pool: testeYamahaPoolAgent
 
 stages:
 - stage: Build
   jobs:
   - job:
-    pool: testeyamahaagent
+    pool: testeYamahaPoolAgent
     steps:
     - script: |
         echo "ola"

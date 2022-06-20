@@ -8,19 +8,6 @@ trigger:
 
 pool:
   vmImage: testeyamahaagent
-
-resources:
-  repositories:
-    - repository: templates
-      type: github
-      name: roger-ferreira-compasso/teste-yamaha1
-      endpoint: roger-ferreira-compasso
-jobs:      
-- job: Deploy
-
-  pool:
-    vmImage: testeyamahaagent
-
   steps:
-  - template: pipeline.yml@templates
- 
+  - script: |
+      echo "ola"

@@ -8,6 +8,10 @@ trigger:
 
 pool:
   vmImage: testeyamahaagent
-  steps:
-  - script: |
-      echo "ola"
+stages:
+- stage: Build
+  jobs:
+  - job:
+    steps:
+    - script: |
+        echo "ola"

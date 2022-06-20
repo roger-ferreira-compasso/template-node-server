@@ -14,10 +14,7 @@ resources:
       type: github
       name: roger-ferreira-compasso/teste-yamaha1
       endpoint: roger-ferreira-compasso
-stages:
-- stage: Build
+steps:
+
 - template: pipeline.yml@templates
 
-
-
-        
